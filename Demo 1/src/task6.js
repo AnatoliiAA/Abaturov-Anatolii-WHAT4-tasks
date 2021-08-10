@@ -21,8 +21,9 @@ function numSequence(length, minimalSquare) {
 
     return result.trim();
 }
-console.log(numSequence());
-console.log(numSequence([1], 2));
-console.log(numSequence('as', 2));
-console.log(numSequence(-1, 2));
-export default numSequence;
+// console.log(numSequence());
+// console.log(numSequence([1], 2));
+// console.log(numSequence('as', 2));
+// console.log(numSequence(-1, 2));
+console.log(numSequence(3, 15));
+// export default numSequence;
