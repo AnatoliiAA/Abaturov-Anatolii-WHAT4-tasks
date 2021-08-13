@@ -1,20 +1,20 @@
 function createChessBoard(width, length, symbol) {
     if (
+        typeof width === 'undefined'
+        || typeof length === 'undefined'
+        || typeof symbol === 'undefined'
+    ) {
+        return { status: 'failed', reason: 'You should specify all 3 params: width, length and symbol' };
+    }
+
+    if (
         !Number.isInteger(width)
         || !Number.isInteger(length)
         || typeof width !== 'number'
         || typeof length !== 'number'
         || typeof symbol !== 'string'
     ) {
-        return { status: 'failed', reason: 'Width and length must be integer, and sumbol must be a string' };
-    }
-
-    if (
-        typeof width === 'undefined'
-        || typeof length === 'undefined'
-        || typeof symbol === 'undefined'
-    ) {
-        return { status: 'failed', reason: 'You should specify all 3 params: width, length and symbol' };
+        return { status: 'failed', reason: 'Width and length must be integer, and symbol must be a string' };
     }
 
     if (symbol.length !== 1 || symbol === ' ') {
@@ -32,9 +32,12 @@ function createChessBoard(width, length, symbol) {
 
     let chessBoard = [];
     let finalBoard;
-    let halfWidth = ~~(width / 2) || 1;
 
     for (let i = 0; i < length; i += 1) {
+        let halfWidth = Math.ceil((width / 2));
+        if (width % 2 === 1) {
+            halfWidth = halfWidth - i % 2;
+        }
         chessBoard.push(Array(halfWidth).fill(symbol));
         if (width === 1 && i % 2) {
             chessBoard[i].pop();
@@ -45,8 +48,7 @@ function createChessBoard(width, length, symbol) {
         chessBoard[index] = index % 2 ? '  ' + el.join('  ') : el.join('  ');
     })
     finalBoard = chessBoard.join('\n');
-    console.log(finalBoard);
     return finalBoard;
 }
 
-export default createChessBoard
+export default createChessBoard;

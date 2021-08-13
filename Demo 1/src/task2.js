@@ -39,14 +39,14 @@ function checkEnvelopes(envelope1, envelope2) {
     }
 
     if (
-        typeof envelope1.w <= 0
-        || typeof envelope1.w >= 1000000
-        || typeof envelope1.l <= 0
-        || typeof envelope1.l >= 1000000
-        || typeof envelope2.w <= 0
-        || typeof envelope2.w >= 1000000
-        || typeof envelope2.l <= 0
-        || typeof envelope2.l >= 1000000
+        envelope1.w <= 0
+        || envelope1.w >= 1000000
+        || envelope1.l <= 0
+        || envelope1.l >= 1000000
+        || envelope2.w <= 0
+        || envelope2.w >= 1000000
+        || envelope2.l <= 0
+        || envelope2.l >= 1000000
     ) {
         return { status: 'failed', reason: 'Width and length must be greated than 0 and less than 1000000' };
     }
@@ -58,23 +58,23 @@ function checkEnvelopes(envelope1, envelope2) {
         (width1 === width2 && length1 === length2)
         || (width1 === length2 && length1 === width2)
     ) {
-        return 0
+        return 0;
     }
 
     if (
         (width1 <= width2 && length1 <= length2)
         || (width1 <= length2 && length1 <= width2)
     ) {
-        return 1
+        return 1;
     }
 
     if (
         (width2 <= width1 && length2 <= length1)
         || (width2 <= length1 && length2 <= width1)
     ) {
-        return 2
+        return 2;
     }
-    return 0
+    return 0;
 }
 
 export default checkEnvelopes
