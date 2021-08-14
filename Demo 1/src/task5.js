@@ -43,7 +43,7 @@ function checkLuckyTickets(minMaxObj) {
         return { status: 'failed', reason: 'You should specify min-max object in the next format: {min: 1, max: 123123}' };
     }
 
-    if (!Number.isInteger(minMaxObj.min) ||!Number.isInteger(minMaxObj.max)) {
+    if (!Number.isInteger(minMaxObj.min) || !Number.isInteger(minMaxObj.max)) {
         return { status: 'failed', reason: 'Min and max values should be integer' };
     }
 
@@ -56,12 +56,12 @@ function checkLuckyTickets(minMaxObj) {
         return { status: 'failed', reason: 'Min and max should be > 1 and < 999999' };
     }
 
-    if (minMaxObj.min > minMaxObj.max) {
-        minMaxObj.max = minMaxObj.min;
-    }
-
     let { min, max } = minMaxObj;
     let resultObj = { winner: '', tickets: { simple: 0, hard: 0 } };
+
+    if (min > max) {
+        [min, max] = [max, min];
+    }
 
     for (let i = min; i <= max; i += 1) {
         let fullTicketNumber = createFullNumber(i);
@@ -69,17 +69,10 @@ function checkLuckyTickets(minMaxObj) {
         checkTicketHard(fullTicketNumber);
     }
 
-    resultObj.winner = resultObj.tickets.simple === resultObj.tickets.hard ? "both" : '';
-    resultObj.winner = resultObj.tickets.simple > resultObj.tickets.hard ? "simple" : "hard";
+    resultObj.winner = resultObj.tickets.simple === resultObj.tickets.hard ? 'both' : '';
+    resultObj.winner = resultObj.tickets.simple > resultObj.tickets.hard ? 'simple' : 'hard';
 
     return resultObj;
 }
-
-console.log(checkLuckyTickets(''));
-console.log(checkLuckyTickets({ min: '', max: 1043 }));
-console.log(checkLuckyTickets({max: 1043 }));
-console.log(checkLuckyTickets({ MSin: 1001, max: 1043 }));
-console.log(checkLuckyTickets({ min: -11, max: 1043 }));
-console.log(checkLuckyTickets({ min: 999999, max: 1043 }));
 
 export default checkLuckyTickets

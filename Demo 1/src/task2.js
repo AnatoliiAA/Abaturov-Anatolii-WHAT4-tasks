@@ -23,7 +23,7 @@ function checkEnvelopes(envelope1, envelope2) {
         || !envelope2.hasOwnProperty('l')
     ) {
         return {
-            status: "failed",
+            status: 'failed',
             reason:
                 'Variables must be objects and have the following format: {w: 12.1, l: 10} where "w" is width and "l" is length',
         };

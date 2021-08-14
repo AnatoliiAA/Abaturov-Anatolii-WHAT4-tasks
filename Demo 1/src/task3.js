@@ -39,9 +39,9 @@ function sortTriangles(...triangles) {
             || !triangles[i].hasOwnProperty(vertices[2])
         ) {
             return {
-                status: "failed",
+                status: 'failed',
                 reason:
-                    "The names of the vertices of the triangle must match with those which you specified in vertices variable",
+                    'The names of the vertices of the triangle must match with those which you specified in vertices variable',
             };
         }
 

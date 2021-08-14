@@ -20,7 +20,7 @@ function findFibInRange(context) {
             thirdNum = firstNum + secondNum;
         }
 
-        return result
+        return result;
     }
 
     function findFirstN(length) {
@@ -29,7 +29,8 @@ function findFibInRange(context) {
         for (let i = 2; i < length; i += 1) {
             result[i] = result[i - 1] + result[i - 2];
         }
-        return result
+        
+        return result;
     }
 
     if (typeof context === 'undefined') {
@@ -66,23 +67,15 @@ function findFibInRange(context) {
         return { status: 'failed', reason: 'Min and max should be > 1' };
     }
 
-    if (context.min > context.max) {
-        return { status: 'failed', reason: 'Min should be < max' };
-    }
-
     let { min, max } = context;
-    let result = findInRange(min, max);
+    let result;
+
+    if (min > max) {
+        [min, max] = [max, min];
+    }
+    
+    result = findInRange(min, max);
     return result;
 }
 
-console.log(findFibInRange());
-console.log(findFibInRange({}));
-console.log(findFibInRange({ min: 10 }));
-console.log(findFibInRange({ length: '' }));
-console.log(findFibInRange({ msn: 10, max: 100, lesth: 20 }));
-console.log(findFibInRange({ msn: 10, max: 100}));
-console.log(findFibInRange({ min: 10, max: -100}));
-console.log(findFibInRange({ min: 1011, max: 100}));
-console.log(findFibInRange({ min: 10, max: 100, length: 20 }));
-
-export default findFibInRange
+export default findFibInRange;
